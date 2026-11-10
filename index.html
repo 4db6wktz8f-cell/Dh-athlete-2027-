@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DH Athlete">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>DH Athlete 2027</title>
+<style>
+:root{color-scheme:dark;--bg:#090909;--panel:#151515;--panel2:#202020;--line:#303030;--muted:#a1a1a1;--white:#f5f5f5;--soft:#d1d1d1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+header{padding:calc(18px + env(safe-area-inset-top)) 18px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(9,9,9,.94);backdrop-filter:blur(12px);z-index:5}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand h1{font-size:19px;letter-spacing:2px;margin:0;font-weight:900}.brand small{color:var(--muted);letter-spacing:1.5px;font-size:9px}.mark{border:1px solid #666;padding:7px 9px;font-size:10px;letter-spacing:1px}
+main{max-width:760px;margin:auto;padding:18px 15px 30px}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:700;text-transform:uppercase}.hero{padding:20px;border:1px solid var(--line);background:linear-gradient(145deg,#1c1c1c,#0e0e0e);border-radius:16px;margin-bottom:16px}.hero h2{font-size:27px;line-height:1.08;margin:9px 0}.hero p{color:var(--muted);font-size:13px;line-height:1.5;margin:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}.stat{background:#202020;padding:12px;border-radius:10px}.stat b{font-size:20px;display:block}.stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:23px 2px 10px}.section-head h3{margin:0;font-size:15px;letter-spacing:.5px}.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px;margin-bottom:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted)}.tiny{font-size:11px;color:var(--muted)}.pill{font-size:9px;letter-spacing:1px;text-transform:uppercase;border:1px solid #555;border-radius:30px;padding:5px 8px;color:#ddd;white-space:nowrap}.pill.rest{background:#242424}.pill.ride{border-color:#888}.pill.strength{border-color:#777}
+button,.btn{border:1px solid #777;background:#f2f2f2;color:#080808;border-radius:9px;padding:10px 13px;font-weight:750;font-size:12px;cursor:pointer}.btn.secondary,button.secondary{background:#171717;color:#eee;border-color:#555}.btn.ghost,button.ghost{background:transparent;color:#ddd;border-color:#444}.btn.danger,button.danger{background:#211414;color:#ffbaba;border-color:#704040}.btn.small,button.small{padding:7px 9px;font-size:11px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:rgba(12,12,12,.97);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));z-index:10}
+nav button{background:none;border:0;color:#888;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9px;min-width:54px}nav button.active{color:#fff}nav .ico{font-size:18px;line-height:1}
+.page{display:none}.page.active{display:block}
+.day{display:grid;grid-template-columns:43px 1fr auto;align-items:center;gap:10px}.daynum{width:39px;height:39px;border:1px solid #555;border-radius:9px;display:grid;place-items:center;font-weight:800}.day h4{font-size:13px;margin:0 0 4px}.day p{font-size:11px;color:var(--muted);margin:0}.exercise{padding:11px 0;border-bottom:1px solid #292929}.exercise:last-child{border:0}.exercise strong{font-size:13px}.exercise p{margin:4px 0 0;font-size:11px;color:var(--muted)}
+input,select,textarea{width:100%;background:#0d0d0d;border:1px solid #444;border-radius:8px;color:#fff;padding:11px;font:inherit;font-size:13px;margin-top:5px}
+label{font-size:11px;color:#bbb;display:block;margin:12px 0 0}textarea{min-height:70px;resize:vertical}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.empty{padding:25px;text-align:center;color:var(--muted);font-size:13px}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;z-index:20}.modal.open{display:flex}.sheet{width:100%;max-width:620px;max-height:88vh;overflow:auto;background:#151515;border:1px solid #444;border-radius:18px 18px 0 0;padding:20px 16px calc(25px + env(safe-area-inset-bottom))}.sheet h3{margin:0 0 6px}.close{float:right}
+.notice{border-left:2px solid #aaa;padding:10px 12px;background:#171717;color:#bbb;font-size:11px;line-height:1.5;margin:12px 0}
+.checkline{display:flex;align-items:center;gap:8px;margin:9px 0;color:#ddd;font-size:12px}.checkline input{width:auto;margin:0;accent-color:white}
+@media(min-width:650px){main{padding-top:24px}.hero h2{font-size:34px}.sheet{border-radius:18px;margin-bottom:20px}.modal{align-items:center;padding:20px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div><h1>DH ATHLETE <span style="color:#888">2027</span></h1><small>PERFORMANCE · TRAINING · RECOVERY</small></div><div class="mark">RIDE / BUILD / RECOVER</div></div></header>
+<main>
+<section id="dashboard" class="page active">
+ <div class="hero"><div class="eyebrow">Your downhill development</div><h2>BUILD THE<br>RIDER.</h2><p>A flexible training companion. Train with purpose, ride with intent, recover properly.</p>
+ <div class="stats"><div class="stat"><b id="statCycle">1/10</b><span>Cycle day</span></div><div class="stat"><b id="statRides">0</b><span>Rides logged</span></div><div class="stat"><b id="statSleep">—</b><span>Last sleep</span></div></div></div>
+ <div class="section-head"><h3>UP NEXT</h3><button class="small secondary" onclick="openCycle()">View cycle</button></div><div class="card" id="nextCard"></div>
+ <div class="section-head"><h3>QUICK LOG</h3></div><div class="card"><div class="actions" style="margin-top:0"><button onclick="openLog('Ride')">＋ Log ride</button><button class="secondary" onclick="openRecovery()">Recovery check-in</button></div></div>
+ <div class="section-head"><h3>COACHING NOTE</h3></div><div class="notice">This is a planning and tracking tool, not medical supervision. At 17, build gradually, prioritise technique and recovery, and involve a qualified coach or healthcare professional for individual concerns. Don't train through pain or persistent fatigue.</div>
+</section>
+<section id="cycle" class="page">
+ <div class="eyebrow">Your repeating plan</div><div class="section-head"><h3>10-DAY TRAINING CYCLE</h3><button class="small" onclick="editCycle()">Edit cycle</button></div>
+ <div class="notice">The cycle is a guide, not a deadline. Move sessions, add a floating social day or take extra rest when needed. Don't cram missed workouts into the next day.</div>
+ <div id="cycleList"></div>
+</section>
+<section id="library" class="page">
+ <div class="eyebrow">Build your sessions</div><div class="section-head"><h3>WORKOUT LIBRARY</h3><button onclick="addExercise()">＋ Add</button></div><div class="tiny">Add, edit or remove exercises. Assign a category and keep notes on why you use each movement.</div><div id="libraryList" style="margin-top:14px"></div>
+</section>
+<section id="log" class="page">
+ <div class="eyebrow">Your training history</div><div class="section-head"><h3>SESSION JOURNAL</h3><button onclick="openLog('Ride')">＋ Log session</button></div><div id="logList"></div>
+</section>
+<section id="recovery" class="page">
+ <div class="eyebrow">Look after the athlete</div><div class="section-head"><h3>RECOVERY CHECK-IN</h3><button onclick="openRecovery()">＋ Check in</button></div>
+ <div class="card"><p class="tiny">Track how you're feeling, not just what you've completed.</p><div id="recoveryLatest" class="muted">No check-ins yet.</div></div>
+ <div class="section-head"><h3>BACKUP & DATA</h3></div><div class="card"><p class="tiny">Your information is saved in this browser on this device. Export a backup regularly. Clearing website data may erase it.</p><div class="actions"><button onclick="exportData()">Export backup</button><button class="secondary" onclick="document.getElementById('importFile').click()">Import backup</button><button class="danger" onclick="resetData()">Reset app data</button></div><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div>
+</section>
+</main>
+<nav>
+<button class="active" data-page="dashboard"><span class="ico">⌂</span>HOME</button>
+<button data-page="cycle"><span class="ico">▦</span>CYCLE</button>
+<button data-page="library"><span class="ico">＋</span>EXERCISES</button>
+<button data-page="log"><span class="ico">≡</span>LOGBOOK</button>
+<button data-page="recovery"><span class="ico">◌</span>RECOVERY</button>
+</nav>
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="sheet"><button class="ghost small close" onclick="closeModal()">CLOSE ✕</button><div id="modalBody"></div></div></div>
+<script>
+const defaults={
+ cycle:[
+  ["Upper-body strength + core","Strength","Pull-ups, push-ups, band rows and controlled core work."],
+  ["Enduro skills + technique","Ride","Cornering, braking, balance and line choice. Keep it focused."],
+  ["Recovery + mobility","Recovery","Gentle movement only; no demanding workout."],
+  ["Lower-body strength","Strength","Squat and lunge patterns, hinge work and stability."],
+  ["Flexible social day","Social","Friends, fun and no scheduled training. Move this day as life changes."],
+  ["Weekend endurance ride","Ride","Steady, comfortable ride. Build time gradually."],
+  ["Weekend technical / DH practice","Ride","Prioritise technique, safe trails and quality over run count."],
+  ["Complete rest","Rest","No structured training. Recover."],
+  ["Explosive power + short sprints","Power","Only when fresh; quality reps, full recovery and safe landing mechanics."],
+  ["Complete rest","Rest","No structured training. Recover."]
+ ],
+ exercises:[
+  ["Pull-up","Upper body","3 sets × 1–4 reps","Leave 1–2 good reps in reserve; use band assistance if needed."],
+  ["Push-up","Upper body","3 × 6–12","Keep a stable body line; stop before form breaks."],
+  ["Resistance-band row","Upper body","3 × 10–15","Control both directions."],
+  ["Goblet squat (6 kg)","Lower body","3 × 8–12","Smooth reps; increase difficulty gradually."],
+  ["Reverse lunge","Lower body","2 × 8 each side","Keep balance and knee control."],
+  ["Glute bridge","Lower body","2 × 12–15","Pause briefly at the top."],
+  ["Dead bug","Core","2 × 8 each side","Keep lower back controlled."],
+  ["Side plank","Core","2 × 15–30 sec each side","Stop if position collapses."],
+  ["Calf raise","Lower body","2 × 12–15","Use a controlled range."],
+  ["Low pogo hops","Power","2 × 8–10","Only if pain-free; quiet, controlled landings on a suitable surface."]
+ ],
+ logs:[], recovery:[], cycleStart:new Date().toISOString().slice(0,10)
+};
+let data=load();
+function load(){try{return {...defaults,...JSON.parse(localStorage.getItem('dha2027')||'{}')}}catch(e){return structuredClone(defaults)}}
+function save(){localStorage.setItem('dha2027',JSON.stringify(data));render()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===p));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function cycleIndex(){let start=new Date(data.cycleStart+'T12:00:00'),now=new Date();let diff=Math.floor((new Date(now.getFullYear(),now.getMonth(),now.getDate())-start)/86400000);return ((diff%10)+10)%10}
+function pill(t){return `<span class="pill ${t.toLowerCase()}">${esc(t)}</span>`}
+function render(){
+ let idx=cycleIndex(),next=data.cycle[idx];document.getElementById('statCycle').textContent=(idx+1)+'/10';document.getElementById('statRides').textContent=data.logs.filter(x=>x.type==='Ride').length;document.getElementById('statSleep').textContent=data.recovery[0]?.sleep?data.recovery[0].sleep+'h':'—';
+ document.getElementById('nextCard').innerHTML=`<div class="row"><div><div class="tiny">DAY ${idx+1} OF 10</div><h3 style="margin:6px 0">${esc(next[0])}</h3></div>${pill(next[1])}</div><p class="tiny">${esc(next[2])}</p><div class="actions"><button class="secondary" onclick="showPage('cycle')">View plan</button><button onclick="completeToday()">Log as completed</button></div>`;
+ document.getElementById('cycleList').innerHTML=data.cycle.map((d,i)=>`<div class="card"><div class="day"><div class="daynum">${i+1}</div><div><h4>${esc(d[0])}</h4><p>${esc(d[2])}</p></div>${pill(d[1])}</div><div class="actions"><button class="ghost small" onclick="editDay(${i})">Edit</button><button class="ghost small" onclick="openLog('${esc(d[1]==='Ride'?'Ride':'Training')}','${esc(d[0])}')">Log session</button></div></div>`).join('');
+ document.getElementById('libraryList').innerHTML=data.exercises.length?data.exercises.map((e,i)=>`<div class="card"><div class="row"><strong>${esc(e[0])}</strong>${pill(e[1])}</div><p class="tiny">${esc(e[2])}</p><p class="tiny">${esc(e[3])}</p><div class="actions"><button class="ghost small" onclick="editExercise(${i})">Edit</button><button class="danger small" onclick="deleteExercise(${i})">Remove</button></div></div>`).join(''):'<div class="empty">No exercises yet. Add your first movement.</div>';
+ document.getElementById('logList').innerHTML=data.logs.length?[...data.logs].reverse().map(l=>`<div class="card"><div class="row"><strong>${esc(l.title)}</strong>${pill(l.type)}</div><p class="tiny">${esc(l.date)} · ${esc(l.duration||'')} ${l.duration?'min':''} ${l.distance?'· '+esc(l.distance)+' km':''}</p><p class="tiny">${esc(l.notes||'')}</p></div>`).join(''):'<div class="empty">Your sessions will appear here.</div>';
+ let r=data.recovery[0];document.getElementById('recoveryLatest').innerHTML=r?`<strong>${esc(r.date)}</strong><p class="tiny">Sleep: ${esc(r.sleep)} h · Energy: ${esc(r.energy)}/5 · Soreness: ${esc(r.soreness)}/5</p><p class="tiny">${esc(r.notes||'')}</p>`:'No check-ins yet.';
+}
+function openModal(html){document.getElementById('modalBody').innerHTML=html;document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function openCycle(){showPage('cycle')}
+function completeToday(){let d=data.cycle[cycleIndex()];data.logs.push({type:d[1],title:d[0],date:new Date().toLocaleDateString(),notes:'Marked complete from cycle.'});save()}
+function editDay(i){let d=data.cycle[i];openModal(`<h3>Edit day ${i+1}</h3><label>Session name<input id="dname" value="${esc(d[0])}"></label><label>Session type<select id="dtype">${['Strength','Ride','Recovery','Rest','Social','Power','Cardio','Core'].map(x=>`<option ${x===d[1]?'selected':''}>${x}</option>`).join('')}</select></label><label>Notes<textarea id="dnotes">${esc(d[2])}</textarea></label><div class="actions"><button onclick="saveDay(${i})">Save changes</button><button class="secondary" onclick="closeModal()">Cancel</button></div>`)}
+function saveDay(i){data.cycle[i]=[document.getElementById('dname').value,document.getElementById('dtype').value,document.getElementById('dnotes').value];save();closeModal()}
+function editCycle(){openModal(`<h3>Edit cycle settings</h3><label>Cycle start date<input type="date" id="startdate" value="${data.cycleStart}"></label><p class="tiny">Day 1 is counted from this date. You can edit individual sessions from the cycle list.</p><div class="actions"><button onclick="data.cycleStart=document.getElementById('startdate').value||data.cycleStart;save();closeModal()">Save</button></div>`)}
+function addExercise(){exerciseForm(-1)}
+function editExercise(i){exerciseForm(i)}
+function exerciseForm(i){let e=i<0?['','','','']:data.exercises[i];openModal(`<h3>${i<0?'Add exercise':'Edit exercise'}</h3><label>Exercise name<input id="ename" value="${esc(e[0])}" placeholder="e.g. Split squat"></label><label>Category<select id="ecat">${['Upper body','Lower body','Core','Power','Cardio','Mobility','Skills'].map(x=>`<option ${x===e[1]?'selected':''}>${x}</option>`).join('')}</select></label><label>Sets / reps / duration<input id="edosage" value="${esc(e[2])}" placeholder="e.g. 3 × 8 each side"></label><label>Coaching notes<textarea id="enotes">${esc(e[3])}</textarea></label><div class="actions"><button onclick="saveExercise(${i})">Save exercise</button><button class="secondary" onclick="closeModal()">Cancel</button></div>`)}
+function saveExercise(i){let e=[document.getElementById('ename').value.trim(),document.getElementById('ecat').value,document.getElementById('edosage').value,document.getElementById('enotes').value];if(!e[0])return alert('Add an exercise name first.');if(i<0)data.exercises.push(e);else data.exercises[i]=e;save();closeModal()}
+function deleteExercise(i){if(confirm('Remove this exercise from your library?')){data.exercises.splice(i,1);save()}}
+function openLog(type='Ride',title=''){openModal(`<h3>Log a session</h3><label>Session type<select id="ltype">${['Ride','Strength','Power','Cardio','Mobility','Other'].map(x=>`<option ${x===type?'selected':''}>${x}</option>`).join('')}</select></label><label>Session name<input id="ltitle" value="${esc(title)}" placeholder="e.g. Trail skills"></label><div class="formgrid"><label>Duration (minutes)<input id="lduration" type="number" min="0" inputmode="numeric"></label><label>Distance (km)<input id="ldistance" type="number" min="0" step=".1" inputmode="decimal"></label></div><label>Notes / skills practised<textarea id="lnotes" placeholder="How did it feel? What did you work on?"></textarea></label><div class="actions"><button onclick="saveLog()">Save session</button><button class="secondary" onclick="closeModal()">Cancel</button></div>`)}
+function saveLog(){let title=document.getElementById('ltitle').value.trim()||document.getElementById('ltype').value;data.logs.push({type:document.getElementById('ltype').value,title,date:new Date().toLocaleDateString(),duration:document.getElementById('lduration').value,distance:document.getElementById('ldistance').value,notes:document.getElementById('lnotes').value});save();closeModal()}
+function openRecovery(){openModal(`<h3>Recovery check-in</h3><div class="formgrid"><label>Sleep (hours)<input id="rsleep" type="number" min="0" max="24" step=".5" placeholder="e.g. 9"></label><label>Energy (1–5)<select id="renergy">${[1,2,3,4,5].map(x=>`<option>${x}</option>`).join('')}</select></label><label>Soreness (1–5)<select id="rsore">${[1,2,3,4,5].map(x=>`<option>${x}</option>`).join('')}</select></label><label>Water (litres)<input id="rwater" type="number" min="0" step=".1" placeholder="Optional"></label></div><label>Notes<textarea id="rnotes" placeholder="Mood, stress, pain, appetite, anything relevant"></textarea></label><div class="actions"><button onclick="saveRecovery()">Save check-in</button><button class="secondary" onclick="closeModal()">Cancel</button></div>`)}
+function saveRecovery(){data.recovery.push({date:new Date().toLocaleDateString(),sleep:document.getElementById('rsleep').value,energy:document.getElementById('renergy').value,soreness:document.getElementById('rsore').value,water:document.getElementById('rwater').value,notes:document.getElementById('rnotes').value});data.recovery.reverse();save();closeModal()}
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dh-athlete-2027-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function importData(ev){let f=ev.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let v=JSON.parse(r.result);if(!Array.isArray(v.cycle)||!Array.isArray(v.exercises))throw 0;data={...defaults,...v};save();alert('Backup imported.')}catch(e){alert('That backup file could not be read.')}};r.readAsText(f);ev.target.value=''}
+function resetData(){if(confirm('This permanently clears your local app data. Export a backup first if you want to keep it.')){localStorage.removeItem('dha2027');data=structuredClone(defaults);save()}}
+render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body></html>
